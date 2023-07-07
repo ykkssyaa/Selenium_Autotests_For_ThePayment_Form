@@ -12,7 +12,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeDriverService;
 import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
@@ -32,7 +31,6 @@ public class OrderPageTest {
         //.withBuildCheckDisabled(true)
         EdgeDriverService service = new EdgeDriverService.Builder()
                 .withLogOutput(System.out)
-                //.withBuildCheckDisabled(true)
                 .build();
 
         EdgeOptions options = new EdgeOptions();
@@ -53,6 +51,11 @@ public class OrderPageTest {
     @DisplayName("Testing Input Amount")
     @Nested
     class InputAmountTest{
+
+        @BeforeEach
+        void start(){
+            driver.manage().timeouts().implicitlyWait(Duration.ofMillis(1000));
+        }
 
         @org.jetbrains.annotations.NotNull
         private static Stream<Arguments> CorrectAmount() {
@@ -188,6 +191,8 @@ public class OrderPageTest {
             submitButton = driver.findElement(By.id("submitButton"));
             amountElem = driver.findElement(By.id("amountControl"));
             descriptionElem = driver.findElement(By.id("description"));
+
+            driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
         }
 
         @RepeatedTest(3)

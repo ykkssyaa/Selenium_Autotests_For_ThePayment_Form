@@ -13,7 +13,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeDriverService;
 import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -81,6 +80,7 @@ public class PaymentResultPageTest {
 
 
         emailButton = driver.findElement(By.xpath("//*[@id=\"showEmail\"]/button"));
+        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
 
     }
 
@@ -168,7 +168,7 @@ public class PaymentResultPageTest {
     void MakeEmailReceiptWithUncorrectData(String email){
 
         emailButton.click();
-        //driver.manage().timeouts().implicitlyWait(Duration.ofMillis(100));
+        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
 
